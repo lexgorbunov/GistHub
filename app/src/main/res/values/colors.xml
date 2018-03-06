@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+
+    <color name="colorWindowBackground">@color/colorWhite</color>
+    <color name="colorStatusBar">#c5007aff</color>
+
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+
+    <color name="colorBrightBlue">#007aff</color>
+    <color name="colorSkyBlue">#58bff8</color>
+    <color name="colorWarmGrey">#a2a2a2</color>
+    <color name="colorWarmGreyTwo">#a1a1a1</color>
+    <color name="colorReddishPink">#ff345a</color>
+    <color name="colorReddish">#ff4848</color>
+    <color name="colorVibrantBlue">#072bee</color>
+    <color name="colorCharcoalGrey">#3c3c46</color>
+
+    <color name="colorOverlay">#95282828</color>
+    <color name="colorChatBackground">#efefef</color>
+</resources>

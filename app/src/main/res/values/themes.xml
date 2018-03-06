@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.GistHub.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- This is the color of the Toolbar -->
+        <item name="android:colorPrimary" tools:targetApi="lollipop">@color/colorBrightBlue</item>
+        <item name="colorPrimary">@color/colorBrightBlue</item>
+        <!-- This is the color of the Status bar -->
+        <item name="android:colorPrimaryDark" tools:targetApi="lollipop">@color/colorStatusBar</item>
+        <item name="colorPrimaryDark">@color/colorStatusBar</item>
+
+        <!-- Theme UI controls like checkboxes and text fields -->
+        <item name="android:colorAccent" tools:targetApi="lollipop">@color/colorVibrantBlue</item>
+        <item name="colorAccent">@color/colorVibrantBlue</item>
+
+        <!-- Arrow color -->
+        <item name="colorControlNormal">@color/colorWhite</item>
+        <!-- Ripple effect color -->
+        <item name="colorControlHighlight">@color/colorWarmGrey</item>
+        <!-- The color applied to framework controls in their activated (ex. checked, switch on) state. -->
+        <!-- Cursor in EditText -->
+        <item name="colorControlActivated">@color/colorVibrantBlue</item>
+        <item name="colorButtonNormal">@android:color/white</item>
+        <item name="android:windowBackground">@color/colorWindowBackground</item>
+
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+</resources>

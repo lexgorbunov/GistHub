@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId rootProject.applicationId
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        testInstrumentationRunner versions.testInstrumentationRunner
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    kapt {
+        generateStubs = true
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation libraries.supportAppcompat
+    implementation libraries.supportConstraint
+    implementation libraries.dagger
+    implementation libraries.dagger
+    kapt libraries.daggerCompiler
+    implementation libraries.daggerAndroid
+    kapt libraries.daggerAndroidProcessor
+    implementation libraries.daggerAndroidSupport
+
+    implementation libraries.okHttp
+    implementation libraries.okHttpLogger
+    implementation libraries.gson
+    implementation libraries.retrofit
+    implementation libraries.retrofitGsonConverter
+    implementation libraries.retrofitRxAdapter
+    implementation libraries.rxJava
+    implementation libraries.rxAndroid
+    implementation libraries.rxKotlin
+    implementation libraries.rxPermissions
+
+    implementation libraries.picasso
+}

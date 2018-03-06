@@ -1,0 +1,58 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorChatBackground"
+    tools:context="com.lexgorbunov.gisthub.gists.gistlist.GistListFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_chat_mine"/>
+
+    <LinearLayout
+        android:id="@+id/chat_empty_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorChatBackground"
+        android:orientation="vertical"
+        android:paddingBottom="81dp"
+        android:paddingTop="81dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="0.5"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/empty_image"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="59dp"
+            android:layout_marginStart="59dp"
+            android:layout_marginTop="24dp"
+            android:maxWidth="242dp"
+            android:text="@string/message_gist_list_empty"
+            android:textAlignment="center"
+            android:textColor="@color/colorWarmGrey"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
