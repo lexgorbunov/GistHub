@@ -1,7 +1,7 @@
 package com.lexgorbunov.gisthub.app.di
 
 import com.lexgorbunov.gisthub.gists.GistActivity
-import com.lexgorbunov.gisthub.gists.GistListActivityModule
+import com.lexgorbunov.gisthub.gists.GistActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
 interface ActivitiesModule {
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = arrayOf(GistListActivityModule::class))
+    @ContributesAndroidInjector(modules = arrayOf(GistActivityModule::class))
     fun mainActivityInjector(): GistActivity
 
 }

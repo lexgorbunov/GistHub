@@ -2,7 +2,7 @@ package com.lexgorbunov.gisthub.gists.entity
 
 import com.google.gson.annotations.SerializedName
 
-class Owner {
+class GitHubUser {
 
     @SerializedName("login")
     val login: String? = null //": "octocat",

@@ -2,6 +2,7 @@
 
     <string name="app_name">GistHub</string>
     <string name="title_gist_list">Gist List</string>
+    <string name="title_gist_details">Gist Details</string>
     <string name="message_gist_list_empty">No gists</string>
 
 </resources>

@@ -34,8 +34,6 @@ class NetworkModule {
 
     @Provides
     fun provideHttpsRetrofit(app: App, gson: Gson, okHttp: OkHttpClient): Retrofit {
-        val logger = HttpLoggingInterceptor()
-        logger.setLevel(HttpLoggingInterceptor.Level.BODY)
         return Retrofit.Builder()
                 .baseUrl(app.resources.getString(R.string.api_base))
                 .client(okHttp)

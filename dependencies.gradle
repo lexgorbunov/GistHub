@@ -41,6 +41,7 @@ ext.libraries = [
         // Support
         supportAppcompat      : "com.android.support:appcompat-v7:$versions.supportLibrary",
         supportCardview       : "com.android.support:cardview-v7:$versions.supportLibrary",
+        supportRecycler       : "com.android.support:recyclerview-v7:$versions.supportLibrary",
         supportCustomtabs     : "com.android.support:customtabs:$versions.supportLibrary",
         supportDesign         : "com.android.support:design:$versions.supportLibrary",
         supportConstraint     : "com.android.support.constraint:constraint-layout:$versions.supportConstraint",
