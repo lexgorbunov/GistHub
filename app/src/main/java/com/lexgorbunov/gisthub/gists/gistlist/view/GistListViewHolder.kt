@@ -27,6 +27,7 @@ class GistListViewHolder(itemView: View, private val clickListener: OnGistItemCl
     }
 
     fun bind(gist: Gist) {
+        Picasso.with(avatar.context).cancelRequest(avatar)
         title.text = if (gist.description.isNullOrBlank() || gist.description!!.trim() == "-") {
             var gistTitle = ""
             if (gist.files?.isNotEmpty() == true) {
