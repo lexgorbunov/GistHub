@@ -43,7 +43,6 @@ dependencies {
     implementation libraries.supportRecycler
     implementation libraries.supportDesign
     implementation libraries.dagger
-    implementation libraries.dagger
     kapt libraries.daggerCompiler
     implementation libraries.daggerAndroid
     kapt libraries.daggerAndroidProcessor
