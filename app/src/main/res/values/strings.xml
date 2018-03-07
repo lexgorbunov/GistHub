@@ -5,4 +5,7 @@
     <string name="title_gist_details">Gist Details</string>
     <string name="message_gist_list_empty">No gists</string>
 
+    <string name="label_commits">Commits</string>
+    <string name="label_files">Files</string>
+
 </resources>

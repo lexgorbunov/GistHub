@@ -41,6 +41,7 @@ dependencies {
     implementation libraries.supportAppcompat
     implementation libraries.supportConstraint
     implementation libraries.supportRecycler
+    implementation libraries.supportDesign
     implementation libraries.dagger
     implementation libraries.dagger
     kapt libraries.daggerCompiler

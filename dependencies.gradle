@@ -11,7 +11,7 @@ ext.versions = [
         mockitoCore              : '2.12.0',
         hamcrest                 : '2.0.0.0',
 
-        supportLibrary           : '27.0.2',
+        supportLibrary           : '27.1.0',
         supportConstraint        : '1.1.0-beta1',
         playServices             : '11.8.0',
 
@@ -42,6 +42,7 @@ ext.libraries = [
         supportAppcompat      : "com.android.support:appcompat-v7:$versions.supportLibrary",
         supportCardview       : "com.android.support:cardview-v7:$versions.supportLibrary",
         supportRecycler       : "com.android.support:recyclerview-v7:$versions.supportLibrary",
+//        supportV4             : "implementation 'com.android.support:support-v4:$versions.supportLibrary",
         supportCustomtabs     : "com.android.support:customtabs:$versions.supportLibrary",
         supportDesign         : "com.android.support:design:$versions.supportLibrary",
         supportConstraint     : "com.android.support.constraint:constraint-layout:$versions.supportConstraint",

@@ -8,33 +8,50 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/start_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp"/>
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/gist_avatar_size"
+        android:layout_height="@dimen/gist_avatar_size"
+        android:background="@color/colorWarmGrey"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/end_guideline"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp"/>
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Owner Name"/>
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/start_guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Gist"/>
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:text="Gist Title"/>
 
 </android.support.constraint.ConstraintLayout>

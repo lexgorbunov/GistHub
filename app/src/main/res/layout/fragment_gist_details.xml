@@ -1,16 +1,69 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gist_details_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorChatBackground"
     tools:context="com.lexgorbunov.gisthub.gists.gistdetails.GistDetailsFragment">
 
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/gist_details_avatar_size"
+        android:layout_height="@dimen/gist_details_avatar_size"
+        android:background="@color/colorWarmGrey"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Тратата"/>
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        tools:text="Owner Name"/>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:text="Description\nDescription\nDescription\nDescription\nDescription\nDescription Description Description"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatar"/>
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/viewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs"/>
 
 </android.support.constraint.ConstraintLayout>

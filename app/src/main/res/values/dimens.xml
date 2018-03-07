@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="gist_avatar_size">100dp</dimen>
+    <dimen name="gist_details_avatar_size">120dp</dimen>
+
+    <dimen name="gist_file_header_text_size">16sp</dimen>
+    <dimen name="gist_file_header_height">25dp</dimen>
+    <dimen name="gist_file_header_padding_left">12dp</dimen>
+</resources>
