@@ -36,9 +36,8 @@ class GistListAdapter @Inject constructor() : RecyclerView.Adapter<GistListViewH
     }
 
     fun addToList(list: List<Gist>) {
-        val newList: MutableList<Gist> = mutableListOf()
-        newList.addAll(this.list)
-        newList.addAll(list)
+        // Exclude duplicates
+        val newList: List<Gist> = this.list.union(list).toList()
         val diffResult = DiffUtil.calculateDiff(GistListDiffCallback(this.list, newList))
         this.list.clear()
         this.list.addAll(newList)
