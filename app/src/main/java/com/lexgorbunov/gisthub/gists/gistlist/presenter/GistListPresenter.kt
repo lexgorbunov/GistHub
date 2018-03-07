@@ -1,9 +1,11 @@
 package com.lexgorbunov.gisthub.gists.gistlist.presenter
 
 import android.support.v4.app.FragmentManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.lexgorbunov.gisthub.gists.gistlist.view.GistListView
 import com.lexgorbunov.gisthub.gists.gistlist.view.OnGistClicked
+import com.lexgorbunov.gisthub.gists.gistlist.view.OnGistLoadMore
 import com.lexgorbunov.gisthub.gists.repository.GistRepository
 import com.lexgorbunov.gisthub.gists.router.GistsRouter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
-interface GistListPresenter : OnGistClicked {
+interface GistListPresenter : OnGistClicked, OnGistLoadMore {
 
     fun init(view: GistListView, fragmentManager: FragmentManager)
     fun destroy()
@@ -38,18 +40,34 @@ class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
     }
 
     private fun loadGistList() {
+        view?.toggleProgress(true)
         gistRepo.getGists().observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(onSuccess = {
                     isFirstTimeLoaded = true
                     view?.setList(it)
+                    view?.toggleProgress(false)
                 }, onError = {
+                    view?.toggleProgress(false)
                     it.printStackTrace()
                     view?.showError(it)
-                })
+                }).let { subscriptions.add(it) }
     }
 
     override fun onGistItemClicked(v: View, gistId: String) {
         router.goToDetails(gistId, fragmentManager)
+    }
+
+    override fun onLoadMore(page: Int, totalItemsCount: Int, recycler: RecyclerView) {
+        this.view?.toggleProgress(true)
+        gistRepo.getGists(page).observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(onSuccess = {
+                    this.view?.addToList(it)
+                    this.view?.toggleProgress(false)
+                }, onError = {
+                    this.view?.toggleProgress(false)
+                    it.printStackTrace()
+                    this.view?.showError(it)
+                }).let { subscriptions.add(it) }
     }
 
 }

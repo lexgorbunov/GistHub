@@ -11,11 +11,21 @@
         android:id="@+id/avatar"
         android:layout_width="@dimen/gist_details_avatar_size"
         android:layout_height="@dimen/gist_details_avatar_size"
-        android:background="@color/colorWarmGrey"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
+        android:src="@drawable/no_user_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/info_rect"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPanel"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"/>
 
     <TextView
         android:id="@+id/name"
@@ -25,11 +35,12 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="6dp"
         android:ellipsize="end"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintStart_toStartOf="@id/info_rect"
+        app:layout_constraintTop_toTopOf="@id/info_rect"
         tools:text="Owner Name"/>
 
     <TextView
@@ -40,9 +51,10 @@
         android:layout_marginStart="12dp"
         android:ellipsize="end"
         android:maxLines="4"
+        android:textColor="@color/colorWhite"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/info_rect"
+        app:layout_constraintEnd_toEndOf="@id/info_rect"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/name"
         tools:text="Description\nDescription\nDescription\nDescription\nDescription\nDescription Description Description"/>
@@ -52,9 +64,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
+        android:background="@color/colorPanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/avatar"/>
+        app:layout_constraintTop_toBottomOf="@id/avatar"
+        app:tabSelectedTextColor="@color/colorWhite"
+        app:tabTextColor="@color/colorWhiteDisabled"
+        tools:targetApi="lollipop"/>
 
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"

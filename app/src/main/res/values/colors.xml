@@ -10,11 +10,13 @@
 
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
-
-    <color name="colorBrightBlue">#007aff</color>
+    <color name="colorWhiteDisabled">#eeeeee</color>
+    <color name="colorPanel">#1e88e5</color>
+    <color name="colorBrightBlue">#0091ea</color>
     <color name="colorSkyBlue">#58bff8</color>
     <color name="colorWarmGrey">#a2a2a2</color>
     <color name="colorWarmGreyTwo">#a1a1a1</color>
+    <color name="colorGreen">#379b16</color>
     <color name="colorReddishPink">#ff345a</color>
     <color name="colorReddish">#ff4848</color>
     <color name="colorVibrantBlue">#072bee</color>

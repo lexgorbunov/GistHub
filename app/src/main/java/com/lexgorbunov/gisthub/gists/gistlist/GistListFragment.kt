@@ -26,7 +26,7 @@ class GistListFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listView.init(gist_list_parent, presenter)
+        listView.init(gist_list_parent, presenter, presenter)
         presenter.init(listView, fragmentManager!!)
     }
 

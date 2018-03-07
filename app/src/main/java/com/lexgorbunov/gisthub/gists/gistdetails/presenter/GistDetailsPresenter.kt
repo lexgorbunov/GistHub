@@ -18,7 +18,7 @@ interface GistDetailsPresenter {
 class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRepository) : GistDetailsPresenter {
 
     private lateinit var fragmentManager: FragmentManager
-    private lateinit var view: GistDetailsView
+    private var view: GistDetailsView? = null
     private val subscriptions: CompositeDisposable = CompositeDisposable()
     lateinit var gistId: String
 
@@ -31,16 +31,20 @@ class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRep
 
     override fun destroy() {
         subscriptions.clear()
+        view = null
     }
 
     private fun loadGistDetails() {
+        view?.toggleProgress(true)
         gistRepo.getGist(gistId).observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(onSuccess = {
-                    view.displayDetails(it)
+                    view?.displayDetails(it)
+                    view?.toggleProgress(false)
                 }, onError = {
+                    view?.toggleProgress(false)
                     it.printStackTrace()
-                    view.showError(it)
-                })
+                    view?.showError(it)
+                }).let { subscriptions.add(it) }
     }
 
 }

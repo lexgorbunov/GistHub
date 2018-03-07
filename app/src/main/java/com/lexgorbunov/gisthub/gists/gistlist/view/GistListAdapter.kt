@@ -35,6 +35,16 @@ class GistListAdapter @Inject constructor() : RecyclerView.Adapter<GistListViewH
         diffResult.dispatchUpdatesTo(this)
     }
 
+    fun addToList(list: List<Gist>) {
+        val newList: MutableList<Gist> = mutableListOf()
+        newList.addAll(this.list)
+        newList.addAll(list)
+        val diffResult = DiffUtil.calculateDiff(GistListDiffCallback(this.list, newList))
+        this.list.clear()
+        this.list.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
     override fun onClicked(v: View, pos: Int) {
         onClickedListener?.onGistItemClicked(v, list[pos].id)
     }

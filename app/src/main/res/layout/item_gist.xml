@@ -12,9 +12,9 @@
         android:id="@+id/avatar"
         android:layout_width="@dimen/gist_avatar_size"
         android:layout_height="@dimen/gist_avatar_size"
-        android:background="@color/colorWarmGrey"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
+        android:src="@drawable/no_user_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

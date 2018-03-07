@@ -1,4 +1,4 @@
-package com.lexgorbunov.gisthub.gists.gistdetails.view
+package com.lexgorbunov.gisthub.gists.gistdetails.view.files
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

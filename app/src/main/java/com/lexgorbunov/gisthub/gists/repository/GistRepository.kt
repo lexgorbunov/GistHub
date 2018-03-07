@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 interface GistRepository {
 
-    fun getGists(): Single<List<Gist>>
+    fun getGists(page: Int = 1): Single<List<Gist>>
     fun getGist(id: String): Single<Gist>
 
 }
@@ -18,7 +18,7 @@ interface GistRepository {
 @ActivityScope
 class GistRepositoryImpl @Inject constructor(private val gistService: GistService) : GistRepository {
 
-    override fun getGists(): Single<List<Gist>> = gistService.loadGists().subscribeOn(Schedulers.io())
+    override fun getGists(page: Int): Single<List<Gist>> = gistService.loadGists(page).subscribeOn(Schedulers.io())
 
     override fun getGist(id: String): Single<Gist> = gistService.loadGist(id).subscribeOn(Schedulers.io()).flatMap { gist ->
         val files = (gist.files ?: mapOf()).values.toList()

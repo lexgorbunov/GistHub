@@ -1,12 +1,14 @@
 package com.lexgorbunov.gisthub.app.utils
 
 import android.content.Context
+import android.support.v7.app.AlertDialog
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
+import com.lexgorbunov.gisthub.R
 import com.lexgorbunov.gisthub.app.error.APIError
 import okhttp3.ResponseBody
 import java.io.IOException
@@ -39,4 +41,17 @@ fun tryParseError(context: Context, throwable: Throwable?): APIError? {
         }
     }
     return null
+}
+
+fun Context.buildProgressDialog(title: String? = null, message: String? = null): AlertDialog.Builder {
+    with(AlertDialog.Builder(this)) {
+        setTitle(title ?: getString(R.string.title_loading))
+        if (message.isNullOrBlank()) {
+            setView(R.layout.progressbar)
+        } else {
+            setMessage(message)
+        }
+        setCancelable(false)
+        return this
+    }
 }

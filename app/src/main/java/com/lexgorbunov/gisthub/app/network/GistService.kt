@@ -5,12 +5,13 @@ import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface GistService {
 
     @GET("gists/public")
-    fun loadGists(): Single<List<Gist>>
+    fun loadGists(@Query("page") page: Int): Single<List<Gist>>
 
     @GET("gists/{gistId}")
     fun loadGist(@Path("gistId") gistId: String): Single<Gist>

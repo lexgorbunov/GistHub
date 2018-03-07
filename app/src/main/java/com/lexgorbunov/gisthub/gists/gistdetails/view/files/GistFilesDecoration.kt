@@ -1,4 +1,4 @@
-package com.lexgorbunov.gisthub.gists.gistdetails.view
+package com.lexgorbunov.gisthub.gists.gistdetails.view.files
 
 import android.content.Context
 import android.graphics.Canvas

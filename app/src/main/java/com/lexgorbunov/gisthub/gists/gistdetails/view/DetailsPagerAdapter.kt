@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.lexgorbunov.gisthub.R
 
 class DetailsPagerAdapter(private val context: Context,
-                          private val filesAdapter: GistFilesAdapter,
                           private val onPageInitiated: OnPageInitiated) : PagerAdapter() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
