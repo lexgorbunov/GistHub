@@ -54,7 +54,7 @@ class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
     }
 
     override fun onGistItemClicked(v: View, gistId: String) {
-        router.goToDetails(gistId, fragmentManager)
+        router.goToDetails(gistId)
     }
 
     override fun onLoadMore(page: Int, totalItemsCount: Int, recycler: RecyclerView) {

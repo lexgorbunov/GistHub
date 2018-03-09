@@ -1,5 +1,6 @@
 package com.lexgorbunov.gisthub.gists
 
+import android.support.v4.app.FragmentManager
 import com.lexgorbunov.gisthub.app.di.FragmentScope
 import com.lexgorbunov.gisthub.gists.gistdetails.GistDetailsFragment
 import com.lexgorbunov.gisthub.gists.gistdetails.GistDetailsFragmentModule
@@ -11,9 +12,10 @@ import com.lexgorbunov.gisthub.gists.repository.GistRepository
 import com.lexgorbunov.gisthub.gists.repository.GistRepositoryImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 
-@Module
+@Module(includes = [ProvidesGistActivityModule::class])
 interface GistActivityModule {
 
     @FragmentScope
@@ -29,5 +31,13 @@ interface GistActivityModule {
 
     @Binds
     fun bindGistRepository(presenter: GistRepositoryImpl): GistRepository
+
+}
+
+@Module
+class ProvidesGistActivityModule {
+
+    @Provides
+    fun provideFragmentManager(context: GistActivity): FragmentManager = context.supportFragmentManager
 
 }

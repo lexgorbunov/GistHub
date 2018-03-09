@@ -8,18 +8,15 @@ import javax.inject.Inject
 
 interface GistsRouter {
 
-    fun goToDetails(gistId: String, fragmentManager: FragmentManager)
-
-    fun goToGistList(fragmentManager: FragmentManager)
+    fun goToDetails(gistId: String)
+    fun goToGistList()
 
 }
 
-class GistsRouterImpl @Inject constructor(): GistsRouter {
+class GistsRouterImpl @Inject constructor(private val fragmentController: FragmentController,
+                                          private val fragmentManager: FragmentManager): GistsRouter {
 
-    @Inject
-    lateinit var fragmentController: FragmentController
-
-    override fun goToGistList(fragmentManager: FragmentManager) {
+    override fun goToGistList() {
         fragmentController.setFragment(
                 fragmentManager = fragmentManager,
                 fragment = GistListFragment.getInstance(),
@@ -29,12 +26,11 @@ class GistsRouterImpl @Inject constructor(): GistsRouter {
         )
     }
 
-    override fun goToDetails(gistId: String, fragmentManager: FragmentManager) {
+    override fun goToDetails(gistId: String) {
         fragmentController.setFragment(
                 fragmentManager = fragmentManager,
                 fragment = GistDetailsFragment.getInstance(gistId),
                 withBackStack = true,
-//                reuse = true,
                 saveState = false
         )
     }

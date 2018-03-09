@@ -14,7 +14,7 @@ interface GistPresenter {
 class GistPresenterImpl @Inject constructor(private val router: GistsRouter): GistPresenter {
 
     override fun init(fragmentManager: FragmentManager, savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) router.goToGistList(fragmentManager)
+        if (savedInstanceState == null) router.goToGistList()
     }
 
 }

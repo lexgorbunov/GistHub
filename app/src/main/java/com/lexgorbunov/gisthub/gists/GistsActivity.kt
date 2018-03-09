@@ -28,14 +28,4 @@ class GistActivity : DaggerAppCompatActivity() {
         }
     }
 
-    /*private fun backHandled(): Boolean {
-        val fragment = supportFragmentManager.primaryNavigationFragment
-        return (fragment as? BackPressHandler)?.allowBackPressed() == true
-    }*/
-
-    /*override fun onBackPressed() {
-        if (backHandled()) return
-        super.onBackPressed()
-    }*/
-
 }
