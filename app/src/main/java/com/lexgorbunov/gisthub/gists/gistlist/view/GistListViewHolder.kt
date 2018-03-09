@@ -45,15 +45,12 @@ class GistListViewHolder(itemView: View, private val clickListener: OnGistItemCl
             gist.owner.let {
                 name.visibility = View.VISIBLE
                 name.text = it.login!!
-                if (it.avatarUrl.isNullOrBlank()) {
-                    avatar.setImageResource(R.drawable.no_user_image)
-                } else {
-                    Picasso.with(avatar.context).load(it.avatarUrl)
-                            .error(R.drawable.no_user_image)
-                            .resize(avatarSize, avatarSize)
-                            .onlyScaleDown()
-                            .into(avatar)
-                }
+                Picasso.with(avatar.context).load(it.avatarUrl)
+                    .placeholder(R.drawable.no_user_image)
+                    .error(R.drawable.no_user_image)
+                    .resize(avatarSize, avatarSize)
+                    .onlyScaleDown()
+                    .into(avatar)
             }
         } else {
             avatar.setImageResource(R.drawable.no_user_image)
