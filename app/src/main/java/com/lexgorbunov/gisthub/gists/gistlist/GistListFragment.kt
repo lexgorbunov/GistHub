@@ -37,13 +37,11 @@ class GistListFragment : DaggerFragment() {
 
     override fun onResume() {
         super.onResume()
-        with((activity as AppCompatActivity)) {
+        with(activity as AppCompatActivity) {
             setTitle(R.string.title_gist_list)
-            with(supportActionBar) {
-                if (this != null) {
-                    setDisplayHomeAsUpEnabled(false)
-                    setDisplayShowHomeEnabled(false)
-                }
+            supportActionBar?.let {
+                it.setDisplayHomeAsUpEnabled(false)
+                it.setDisplayShowHomeEnabled(false)
             }
         }
     }

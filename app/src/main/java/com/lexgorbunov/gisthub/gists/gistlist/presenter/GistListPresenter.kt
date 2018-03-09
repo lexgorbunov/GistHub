@@ -31,6 +31,7 @@ class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
     override fun init(view: GistListView, fragmentManager: FragmentManager) {
         this.view = view
         this.fragmentManager = fragmentManager
+        if (view.getGistsCount() > 0) view.hideEmptyView() else view.showEmptyView()
         if (!isFirstTimeLoaded) loadGistList()
     }
 
@@ -40,17 +41,20 @@ class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
     }
 
     private fun loadGistList() {
-        view?.toggleProgress(true)
-        gistRepo.getGists().observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(onSuccess = {
-                    isFirstTimeLoaded = true
-                    view?.setList(it)
-                    view?.toggleProgress(false)
-                }, onError = {
-                    view?.toggleProgress(false)
-                    it.printStackTrace()
-                    view?.showError(it)
-                }).let { subscriptions.add(it) }
+        view?.let { view ->
+            view.showProgress()
+            gistRepo.getGists().observeOn(AndroidSchedulers.mainThread())
+                    .subscribeBy(onSuccess = {
+                        isFirstTimeLoaded = true
+                        view.setList(it)
+                        if (it.isEmpty()) view.showEmptyView() else view.hideEmptyView()
+                        view.hideProgress()
+                    }, onError = {
+                        it.printStackTrace()
+                        view.hideProgress()
+                        view.showError(it)
+                    }).let { subscriptions.add(it) }
+        }
     }
 
     override fun onGistItemClicked(v: View, gistId: String) {
@@ -58,16 +62,19 @@ class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
     }
 
     override fun onLoadMore(page: Int, totalItemsCount: Int, recycler: RecyclerView) {
-        this.view?.toggleProgress(true)
-        gistRepo.getGists(page).observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(onSuccess = {
-                    this.view?.addToList(it)
-                    this.view?.toggleProgress(false)
-                }, onError = {
-                    this.view?.toggleProgress(false)
-                    it.printStackTrace()
-                    this.view?.showError(it)
-                }).let { subscriptions.add(it) }
+        this.view?.let { view ->
+            view.showProgress()
+            gistRepo.getGists(page).observeOn(AndroidSchedulers.mainThread())
+                    .subscribeBy(onSuccess = {
+                        view.addToList(it)
+                        if (!it.isEmpty()) view.hideEmptyView()
+                        view.hideProgress()
+                    }, onError = {
+                        view.hideProgress()
+                        it.printStackTrace()
+                        view.showError(it)
+                    }).let { subscriptions.add(it) }
+        }
     }
 
 }

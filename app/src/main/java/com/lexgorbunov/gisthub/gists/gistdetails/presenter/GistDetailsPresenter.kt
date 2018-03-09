@@ -1,6 +1,5 @@
 package com.lexgorbunov.gisthub.gists.gistdetails.presenter
 
-import android.support.v4.app.FragmentManager
 import com.lexgorbunov.gisthub.gists.gistdetails.view.GistDetailsView
 import com.lexgorbunov.gisthub.gists.repository.GistRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,22 +9,20 @@ import javax.inject.Inject
 
 interface GistDetailsPresenter {
 
-    fun init(gistId: String, view: GistDetailsView, fragmentManager: FragmentManager)
+    fun init(gistId: String, view: GistDetailsView)
     fun destroy()
 
 }
 
 class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRepository) : GistDetailsPresenter {
 
-    private lateinit var fragmentManager: FragmentManager
     private var view: GistDetailsView? = null
     private val subscriptions: CompositeDisposable = CompositeDisposable()
     lateinit var gistId: String
 
-    override fun init(gistId: String, view: GistDetailsView, fragmentManager: FragmentManager) {
+    override fun init(gistId: String, view: GistDetailsView) {
         this.gistId = gistId
         this.view = view
-        this.fragmentManager = fragmentManager
         loadGistDetails()
     }
 
@@ -35,16 +32,26 @@ class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRep
     }
 
     private fun loadGistDetails() {
-        view?.toggleProgress(true)
-        gistRepo.getGist(gistId).observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(onSuccess = {
-                    view?.displayDetails(it)
-                    view?.toggleProgress(false)
-                }, onError = {
-                    view?.toggleProgress(false)
-                    it.printStackTrace()
-                    view?.showError(it)
-                }).let { subscriptions.add(it) }
+        view?.let { view ->
+            view.showProgress()
+            gistRepo.getGist(gistId).observeOn(AndroidSchedulers.mainThread())
+                    .subscribeBy(onSuccess = { gist ->
+                        view.displayDetails(
+                                descr = gist.description ?: "",
+                                filesList = gist.files?.values?.toList() ?: listOf(),
+                                historyList = gist.history ?: listOf()
+                        )
+                        gist.owner?.let { owner ->
+                            if (owner.avatarUrl.isNullOrBlank()) view.hideAvatar() else view.showAvatar(owner.avatarUrl!!)
+                            if (owner.login.isNullOrBlank()) view.hideName() else view.showName(owner.login!!)
+                        }
+                        view.hideProgress()
+                    }, onError = {
+                        it.printStackTrace()
+                        view.hideProgress()
+                        view.showError(it)
+                    }).let { subscriptions.add(it) }
+        }
     }
 
 }

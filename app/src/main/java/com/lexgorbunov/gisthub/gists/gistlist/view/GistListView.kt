@@ -17,8 +17,12 @@ interface GistListView {
     fun init(view: View, onItemClickListener: OnGistClicked, onLoadMore: OnGistLoadMore)
     fun showError(throwable: Throwable)
     fun setList(list: List<Gist>)
-    fun toggleProgress(isProgress: Boolean)
     fun addToList(list: List<Gist>)
+    fun showProgress()
+    fun hideProgress()
+    fun showEmptyView()
+    fun hideEmptyView()
+    fun getGistsCount(): Int
 
 }
 
@@ -34,7 +38,6 @@ class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter)
         val context = view.context
         progressDialog = context.buildProgressDialog().create()
         emptyView = view.findViewById(R.id.empty_view)
-        emptyView.visibility = if (adapter.itemCount > 0) View.GONE else View.VISIBLE
 
         list = view.findViewById(R.id.list)
         val linearLayoutManager = LinearLayoutManager(context)
@@ -45,19 +48,29 @@ class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter)
         list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
-    override fun toggleProgress(isProgress: Boolean) {
-        if (isProgress) progressDialog.show() else progressDialog.dismiss()
+    override fun getGistsCount() = adapter.itemCount
+
+    override fun showEmptyView() {
+        emptyView.visibility = View.VISIBLE
+    }
+
+    override fun hideEmptyView() {
+        emptyView.visibility = View.GONE
+    }
+
+    override fun showProgress() {
+        progressDialog.show()
+    }
+
+    override fun hideProgress() {
+        progressDialog.dismiss()
     }
 
     override fun setList(list: List<Gist>) {
-        emptyView.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
         adapter.setList(list)
     }
 
     override fun addToList(list: List<Gist>) {
-        if (!list.isEmpty()) {
-            emptyView.visibility = View.GONE
-        }
         adapter.addToList(list)
     }
 

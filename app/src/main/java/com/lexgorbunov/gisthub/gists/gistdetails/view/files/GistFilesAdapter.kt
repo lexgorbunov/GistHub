@@ -24,14 +24,6 @@ class GistFilesAdapter @Inject constructor() : RecyclerView.Adapter<GistFileView
         return list.size
     }
 
-    fun getGistFileByPos(pos: Int): GistFile? {
-        return if (pos == RecyclerView.NO_POSITION || pos >= list.size) {
-            null
-        } else {
-            list[pos]
-        }
-    }
-
     fun setList(list: List<GistFile>) {
         val removedSize = this.list.size
         this.list.clear()

@@ -27,12 +27,12 @@ class GistDetailsFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         detailsView.init(gist_details_container)
-        presenter.init(arguments!!.getString(ARG_GIST_ID), detailsView, fragmentManager!!)
+        presenter.init(arguments!!.getString(ARG_GIST_ID), detailsView)
     }
 
     override fun onResume() {
         super.onResume()
-        with((activity as AppCompatActivity)) {
+        with(activity as AppCompatActivity) {
             setTitle(R.string.title_gist_details)
             supportActionBar?.let {
                 it.setDisplayHomeAsUpEnabled(true)
