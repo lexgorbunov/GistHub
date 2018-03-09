@@ -12,7 +12,6 @@ interface GistRepository {
 
     fun getGists(page: Int = 1): Single<List<Gist>>
     fun getGist(id: String): Single<Gist>
-
 }
 
 @ActivityScope
@@ -33,5 +32,4 @@ class GistRepositoryImpl @Inject constructor(private val gistService: GistServic
                     gist
                 }
     }
-
 }

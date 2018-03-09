@@ -106,7 +106,6 @@ class EndlessScrollListener : RecyclerView.OnScrollListener {
         this.previousTotalItemCount = 0
         this.loading = true
     }
-
 }
 
 interface OnGistLoadMore {

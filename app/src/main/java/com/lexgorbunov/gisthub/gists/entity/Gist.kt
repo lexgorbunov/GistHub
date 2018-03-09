@@ -6,17 +6,17 @@ import com.google.gson.annotations.SerializedName
 class Gist {
 
     @SerializedName("url")
-    val url: String? = null  //": "https://api.github.com/gists/aa5a315d61ae9438b18d",
+    val url: String? = null //": "https://api.github.com/gists/aa5a315d61ae9438b18d",
     @SerializedName("forks_url")
-    val forksUrl: String? = null  //": "https://api.github.com/gists/aa5a315d61ae9438b18d/forks",
+    val forksUrl: String? = null //": "https://api.github.com/gists/aa5a315d61ae9438b18d/forks",
     @SerializedName("commits_url")
-    val commitsUrl: String? = null  //": "https://api.github.com/gists/aa5a315d61ae9438b18d/commits",
+    val commitsUrl: String? = null //": "https://api.github.com/gists/aa5a315d61ae9438b18d/commits",
     @SerializedName("id")
-    lateinit var id: String  //": "aa5a315d61ae9438b18d",
+    lateinit var id: String //": "aa5a315d61ae9438b18d",
     @SerializedName("description")
-    val description: String? = null  //": "description of gist",
+    val description: String? = null //": "description of gist",
     @SerializedName("public")
-    val public: Boolean = false  //": true
+    val public: Boolean = false //": true
     @SerializedName("owner")
     val owner: GitHubUser? = null
     @SerializedName("user")

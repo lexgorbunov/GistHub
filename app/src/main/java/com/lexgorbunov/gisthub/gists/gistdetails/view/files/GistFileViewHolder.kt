@@ -15,5 +15,4 @@ class GistFileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fileNameTextView.text = gistFile.fileName ?: ""
         content.text = gistFile.content ?: ""
     }
-
 }

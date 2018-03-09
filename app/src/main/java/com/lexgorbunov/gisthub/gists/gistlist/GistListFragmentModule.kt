@@ -15,5 +15,4 @@ interface GistListFragmentModule {
 
     @Binds
     fun bindGistListPresenter(presenter: GistListPresenterImpl): GistListPresenter
-
 }

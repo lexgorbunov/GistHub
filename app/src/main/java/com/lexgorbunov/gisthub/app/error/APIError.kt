@@ -2,7 +2,6 @@ package com.lexgorbunov.gisthub.app.error
 
 import com.google.gson.annotations.SerializedName
 
-
 class APIError {
 
     var code: Int? = null
@@ -15,5 +14,4 @@ class APIError {
     // Local parameters
     var localizedMessage: String = ""
     var isLocalized: Boolean = false
-
 }

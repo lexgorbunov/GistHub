@@ -31,5 +31,4 @@ class GistFilesAdapter @Inject constructor() : RecyclerView.Adapter<GistFileView
         notifyItemRangeRemoved(0, removedSize)
         notifyItemRangeInserted(0, this.list.size)
     }
-
 }

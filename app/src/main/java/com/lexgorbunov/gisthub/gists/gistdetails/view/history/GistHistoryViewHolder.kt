@@ -22,5 +22,4 @@ class GistHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
             removedCount.text = "0"
         }
     }
-
 }

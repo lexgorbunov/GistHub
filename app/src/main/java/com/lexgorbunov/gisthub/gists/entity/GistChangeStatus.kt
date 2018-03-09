@@ -10,5 +10,4 @@ class GistChangeStatus {
     val additions: Int = 0 // ": 180,
     @SerializedName("total")
     val total: Int = 0 // ": 180
-
 }

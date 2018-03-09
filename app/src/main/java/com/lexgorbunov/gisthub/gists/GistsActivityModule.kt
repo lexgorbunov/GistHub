@@ -31,7 +31,6 @@ interface GistActivityModule {
 
     @Binds
     fun bindGistRepository(presenter: GistRepositoryImpl): GistRepository
-
 }
 
 @Module
@@ -39,5 +38,4 @@ class ProvidesGistActivityModule {
 
     @Provides
     fun provideFragmentManager(context: GistActivity): FragmentManager = context.supportFragmentManager
-
 }

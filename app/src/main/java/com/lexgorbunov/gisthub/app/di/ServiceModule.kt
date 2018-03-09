@@ -14,5 +14,4 @@ class ServiceModule {
     fun gistService(retrofit: Retrofit): GistService {
         return retrofit.create(GistService::class.java)
     }
-
 }

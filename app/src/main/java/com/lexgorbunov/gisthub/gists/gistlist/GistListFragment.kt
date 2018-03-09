@@ -19,8 +19,11 @@ class GistListFragment : DaggerFragment() {
     @Inject
     lateinit var listView: GistListView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_gist_list, container, false)
     }
 
@@ -49,7 +52,5 @@ class GistListFragment : DaggerFragment() {
     companion object {
 
         fun getInstance(): GistListFragment = GistListFragment()
-
     }
-
 }

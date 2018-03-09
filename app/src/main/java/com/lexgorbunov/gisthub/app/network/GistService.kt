@@ -18,5 +18,4 @@ interface GistService {
 
     @GET
     fun loadFile(@Url fileUrl: String): Single<ResponseBody>
-
 }

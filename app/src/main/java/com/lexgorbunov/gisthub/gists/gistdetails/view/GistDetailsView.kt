@@ -26,7 +26,6 @@ interface GistDetailsView {
     fun hideName()
     fun showProgress()
     fun hideProgress()
-
 }
 
 class GistDetailsViewImpl @Inject constructor() : GistDetailsView {
@@ -95,5 +94,4 @@ class GistDetailsViewImpl @Inject constructor() : GistDetailsView {
             view.context.toast(it.localizedMessage)
         }
     }
-
 }

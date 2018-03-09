@@ -9,7 +9,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    AppModule::class,
     NetworkModule::class,
     ServiceModule::class,
     RouterBinds::class,
@@ -19,5 +18,4 @@ interface AppComponent : AndroidInjector<App> {
 
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<App>()
-
 }

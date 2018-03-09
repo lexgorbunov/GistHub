@@ -14,5 +14,4 @@ class GistHistoryEntry {
     val changeStatus: GistChangeStatus? = null
     @SerializedName("committed_at")
     val committedAt: String? = null
-
 }

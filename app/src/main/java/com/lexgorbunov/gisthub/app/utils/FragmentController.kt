@@ -47,10 +47,15 @@ class FragmentController @Inject constructor() {
      * @param reuse Keeps the instance of a fragment that will replaced in fragmentManager if value is true,
      *              or recreate it when will need if value is false
      */
-    fun setFragment(fragmentManager: FragmentManager, fragment: Fragment, withBackStack: Boolean, saveState: Boolean,
-                    clearBackStack: Boolean = false,
-                    stackTag: String? = null,
-                    reuse: Boolean = false) {
+    fun setFragment(
+        fragmentManager: FragmentManager,
+        fragment: Fragment,
+        withBackStack: Boolean,
+        saveState: Boolean,
+        clearBackStack: Boolean = false,
+        stackTag: String? = null,
+        reuse: Boolean = false
+    ) {
 
         val transaction = fragmentManager.beginTransaction()
         val tag = fragment.tag ?: fragment.javaClass.canonicalName
@@ -95,19 +100,24 @@ class FragmentController @Inject constructor() {
      *              or recreate it when will need if value is false
      * @param fragmentFactory Lambda with logic of create a fragment instance
      */
-    fun setFragment(fragmentManager: FragmentManager, fragmentTag: String, withBackStack: Boolean, saveState: Boolean,
-                    clearBackStack: Boolean = false,
-                    stackTag: String? = null,
-                    reuse: Boolean = false,
-                    fragmentFactory: (() -> Fragment)) {
+    fun setFragment(
+        fragmentManager: FragmentManager,
+        fragmentTag: String,
+        withBackStack: Boolean,
+        saveState: Boolean,
+        clearBackStack: Boolean = false,
+        stackTag: String? = null,
+        reuse: Boolean = false,
+        fragmentFactory: (() -> Fragment)
+    ) {
         setFragment(
-                fragmentManager = fragmentManager,
-                fragment = fragmentManager.findFragmentByTag(fragmentTag) ?: fragmentFactory.invoke(),
-                withBackStack = withBackStack,
-                saveState = saveState,
-                clearBackStack = clearBackStack,
-                stackTag = stackTag,
-                reuse = reuse
+            fragmentManager = fragmentManager,
+            fragment = fragmentManager.findFragmentByTag(fragmentTag) ?: fragmentFactory.invoke(),
+            withBackStack = withBackStack,
+            saveState = saveState,
+            clearBackStack = clearBackStack,
+            stackTag = stackTag,
+            reuse = reuse
         )
     }
 
@@ -148,5 +158,4 @@ class FragmentController @Inject constructor() {
     fun getState(savedInstanceState: Bundle?, fragment: Fragment): Bundle? {
         return savedInstanceState ?: states[fragment.tag ?: fragment::class.java.canonicalName]
     }
-
 }

@@ -11,7 +11,6 @@ interface GistDetailsPresenter {
 
     fun init(gistId: String, view: GistDetailsView)
     fun destroy()
-
 }
 
 class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRepository) : GistDetailsPresenter {
@@ -53,5 +52,4 @@ class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRep
                     }).let { subscriptions.add(it) }
         }
     }
-
 }

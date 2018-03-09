@@ -23,5 +23,4 @@ class GistActivity : DaggerAppCompatActivity() {
         super.onBackPressed()
         return false
     }
-
 }

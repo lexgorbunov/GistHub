@@ -60,10 +60,8 @@ class GistListViewHolder(itemView: View, private val clickListener: OnGistItemCl
             name.visibility = View.GONE
         }
     }
-
 }
 
 interface OnGistItemClicked {
     fun onClicked(v: View, pos: Int)
 }
-

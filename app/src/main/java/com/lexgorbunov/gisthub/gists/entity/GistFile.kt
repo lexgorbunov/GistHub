@@ -19,5 +19,4 @@ class GistFile {
 
     // Manual
     var content: String? = null
-
 }

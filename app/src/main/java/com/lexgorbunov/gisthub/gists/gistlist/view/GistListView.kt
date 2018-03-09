@@ -23,15 +23,15 @@ interface GistListView {
     fun showEmptyView()
     fun hideEmptyView()
     fun getGistsCount(): Int
-
 }
 
-class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter): GistListView {
+class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter) : GistListView {
 
     private lateinit var view: View
     private lateinit var list: RecyclerView
     private lateinit var emptyView: View
     private lateinit var progressDialog: AlertDialog
+    private lateinit var endlessScrollListener: EndlessScrollListener
 
     override fun init(view: View, onItemClickListener: OnGistClicked, onLoadMore: OnGistLoadMore) {
         this.view = view
@@ -43,7 +43,8 @@ class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter)
         val linearLayoutManager = LinearLayoutManager(context)
         list.layoutManager = linearLayoutManager
         adapter.onClickedListener = onItemClickListener
-        list.addOnScrollListener(EndlessScrollListener(STARTING_PAGE, linearLayoutManager, onLoadMore))
+        endlessScrollListener = EndlessScrollListener(STARTING_PAGE, linearLayoutManager, onLoadMore)
+        list.addOnScrollListener(endlessScrollListener)
         list.adapter = adapter
         list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
@@ -83,5 +84,4 @@ class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter)
     companion object {
         private const val STARTING_PAGE = 1
     }
-
 }

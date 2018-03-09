@@ -38,5 +38,4 @@ class GitHubUser {
     val type: String? = null //": "User"
     @SerializedName("site_admin")
     val siteAdmin: Boolean = false //": false
-
 }

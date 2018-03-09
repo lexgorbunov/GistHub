@@ -7,13 +7,11 @@ import javax.inject.Inject
 interface GistPresenter {
 
     fun init(savedInstanceState: Bundle?)
-
 }
 
-class GistPresenterImpl @Inject constructor(private val router: GistsRouter): GistPresenter {
+class GistPresenterImpl @Inject constructor(private val router: GistsRouter) : GistPresenter {
 
     override fun init(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) router.goToGistList()
     }
-
 }

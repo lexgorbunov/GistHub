@@ -10,5 +10,4 @@ interface RouterBinds {
 
     @Binds
     fun bindGistsRouter(router: GistsRouterImpl): GistsRouter
-
 }

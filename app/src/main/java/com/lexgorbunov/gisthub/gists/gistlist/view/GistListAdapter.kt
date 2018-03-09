@@ -47,7 +47,6 @@ class GistListAdapter @Inject constructor() : RecyclerView.Adapter<GistListViewH
     override fun onClicked(v: View, pos: Int) {
         onClickedListener?.onGistItemClicked(v, list[pos].id)
     }
-
 }
 
 interface OnGistClicked {

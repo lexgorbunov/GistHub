@@ -15,5 +15,4 @@ interface GistDetailsFragmentModule {
 
     @Binds
     fun bindGistDetailsView(view: GistDetailsViewImpl): GistDetailsView
-
 }

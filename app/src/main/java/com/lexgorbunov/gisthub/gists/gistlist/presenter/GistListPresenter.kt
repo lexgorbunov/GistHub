@@ -17,11 +17,12 @@ interface GistListPresenter : OnGistClicked, OnGistLoadMore {
 
     fun init(view: GistListView, fragmentManager: FragmentManager)
     fun destroy()
-
 }
 
-class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
-                                                private val gistRepo: GistRepository) : GistListPresenter {
+class GistListPresenterImpl @Inject constructor(
+    private val router: GistsRouter,
+    private val gistRepo: GistRepository
+) : GistListPresenter {
 
     private lateinit var fragmentManager: FragmentManager
     private var view: GistListView? = null
@@ -44,16 +45,16 @@ class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
         view?.let { view ->
             view.showProgress()
             gistRepo.getGists().observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(onSuccess = {
-                        isFirstTimeLoaded = true
-                        view.setList(it)
-                        if (it.isEmpty()) view.showEmptyView() else view.hideEmptyView()
-                        view.hideProgress()
-                    }, onError = {
-                        it.printStackTrace()
-                        view.hideProgress()
-                        view.showError(it)
-                    }).let { subscriptions.add(it) }
+                .subscribeBy(onSuccess = {
+                    isFirstTimeLoaded = true
+                    view.setList(it)
+                    if (it.isEmpty()) view.showEmptyView() else view.hideEmptyView()
+                    view.hideProgress()
+                }, onError = {
+                    it.printStackTrace()
+                    view.hideProgress()
+                    view.showError(it)
+                }).let { subscriptions.add(it) }
         }
     }
 
@@ -65,16 +66,15 @@ class GistListPresenterImpl @Inject constructor(private val router: GistsRouter,
         this.view?.let { view ->
             view.showProgress()
             gistRepo.getGists(page).observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(onSuccess = {
-                        view.addToList(it)
-                        if (!it.isEmpty()) view.hideEmptyView()
-                        view.hideProgress()
-                    }, onError = {
-                        view.hideProgress()
-                        it.printStackTrace()
-                        view.showError(it)
-                    }).let { subscriptions.add(it) }
+                .subscribeBy(onSuccess = {
+                    view.addToList(it)
+                    if (!it.isEmpty()) view.hideEmptyView()
+                    view.hideProgress()
+                }, onError = {
+                    view.hideProgress()
+                    it.printStackTrace()
+                    view.showError(it)
+                }).let { subscriptions.add(it) }
         }
     }
-
 }

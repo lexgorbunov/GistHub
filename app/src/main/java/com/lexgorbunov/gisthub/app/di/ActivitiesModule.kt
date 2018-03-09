@@ -11,5 +11,4 @@ interface ActivitiesModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = arrayOf(GistActivityModule::class))
     fun mainActivityInjector(): GistActivity
-
 }

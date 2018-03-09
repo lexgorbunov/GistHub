@@ -31,5 +31,4 @@ class GistHistoryAdapter @Inject constructor() : RecyclerView.Adapter<GistHistor
         notifyItemRangeRemoved(0, removedSize)
         notifyItemRangeInserted(0, this.list.size)
     }
-
 }

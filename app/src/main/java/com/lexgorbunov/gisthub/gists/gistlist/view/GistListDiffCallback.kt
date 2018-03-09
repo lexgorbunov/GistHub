@@ -19,5 +19,4 @@ class GistListDiffCallback(private val oldItems: List<Gist>, private val newItem
         val newItem = newItems[newItemPosition]
         return TextUtils.equals(oldItem.updatedAt, newItem.updatedAt)
     }
-
 }
