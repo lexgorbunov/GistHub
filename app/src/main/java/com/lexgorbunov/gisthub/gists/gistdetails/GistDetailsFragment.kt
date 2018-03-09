@@ -34,11 +34,9 @@ class GistDetailsFragment : DaggerFragment() {
         super.onResume()
         with((activity as AppCompatActivity)) {
             setTitle(R.string.title_gist_details)
-            with(supportActionBar) {
-                if (this != null) {
-                    setDisplayHomeAsUpEnabled(true)
-                    setDisplayShowHomeEnabled(true)
-                }
+            supportActionBar?.let {
+                it.setDisplayHomeAsUpEnabled(true)
+                it.setDisplayShowHomeEnabled(true)
             }
         }
     }
@@ -47,14 +45,12 @@ class GistDetailsFragment : DaggerFragment() {
 
         private const val ARG_GIST_ID = "arg_gist_id"
 
-        fun getInstance(gistId: String): GistDetailsFragment {
-            return GistDetailsFragment().let {
-                it.arguments = with(Bundle()) {
-                    putString(ARG_GIST_ID, gistId)
-                    this
-                }
-                it
+        fun getInstance(gistId: String): GistDetailsFragment = GistDetailsFragment().let {
+            it.arguments = with(Bundle()) {
+                putString(ARG_GIST_ID, gistId)
+                this
             }
+            it
         }
 
     }

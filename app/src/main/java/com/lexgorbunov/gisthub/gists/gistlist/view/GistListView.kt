@@ -45,10 +45,6 @@ class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter)
         list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
-    //override fun showToast(text: String) {
-    //    view.context.toast(text)
-    //}
-
     override fun toggleProgress(isProgress: Boolean) {
         if (isProgress) progressDialog.show() else progressDialog.dismiss()
     }

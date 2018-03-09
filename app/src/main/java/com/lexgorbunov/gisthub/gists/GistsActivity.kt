@@ -16,16 +16,12 @@ class GistActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gists)
         setSupportActionBar(toolbar)
-        presenter.init(supportFragmentManager, savedInstanceState)
+        presenter.init(savedInstanceState)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return if (/*backHandled() || */super.onSupportNavigateUp()) {
-            true
-        } else {
-            super.onBackPressed()
-            false
-        }
+        super.onBackPressed()
+        return false
     }
 
 }

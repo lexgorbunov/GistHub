@@ -81,10 +81,6 @@ class GistDetailsViewImpl @Inject constructor(private val filesAdapter: GistFile
 
     override fun getTitleByPos(pos: Int): String? = filesAdapter.getGistFileByPos(pos)?.fileName
 
-    //override fun showToast(text: String) {
-    //    view.context.toast(text)
-    //}
-
     override fun toggleProgress(isProgress: Boolean) {
         if (isProgress) progressDialog.show() else progressDialog.dismiss()
     }

@@ -24,7 +24,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(/*spec: ConnectionSpec*/): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         val logger = HttpLoggingInterceptor()
         logger.setLevel(HttpLoggingInterceptor.Level.BODY)
 
