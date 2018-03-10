@@ -3,6 +3,7 @@ package com.lexgorbunov.gisthub.gists.gistlist.presenter
 import android.support.v4.app.FragmentManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.lexgorbunov.gisthub.gists.gistlist.entity.GistMapper
 import com.lexgorbunov.gisthub.gists.gistlist.view.GistListView
 import com.lexgorbunov.gisthub.gists.gistlist.view.OnGistClicked
 import com.lexgorbunov.gisthub.gists.gistlist.view.OnGistLoadMore
@@ -21,7 +22,8 @@ interface GistListPresenter : OnGistClicked, OnGistLoadMore {
 
 class GistListPresenterImpl @Inject constructor(
     private val router: GistsRouter,
-    private val gistRepo: GistRepository
+    private val gistRepo: GistRepository,
+    private val gistMapper: GistMapper
 ) : GistListPresenter {
 
     private lateinit var fragmentManager: FragmentManager
@@ -47,7 +49,7 @@ class GistListPresenterImpl @Inject constructor(
             gistRepo.getGists().observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(onSuccess = {
                     isFirstTimeLoaded = true
-                    view.setList(it)
+                    view.setList(gistMapper.map(it))
                     if (it.isEmpty()) view.showEmptyView() else view.hideEmptyView()
                     view.hideProgress()
                 }, onError = {
@@ -67,7 +69,7 @@ class GistListPresenterImpl @Inject constructor(
             view.showProgress()
             gistRepo.getGists(page).observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(onSuccess = {
-                    view.addToList(it)
+                    view.addToList(gistMapper.map(it))
                     if (!it.isEmpty()) view.hideEmptyView()
                     view.hideProgress()
                 }, onError = {

@@ -9,15 +9,15 @@ import com.lexgorbunov.gisthub.R
 import com.lexgorbunov.gisthub.app.utils.buildProgressDialog
 import com.lexgorbunov.gisthub.app.utils.toast
 import com.lexgorbunov.gisthub.app.utils.tryParseError
-import com.lexgorbunov.gisthub.gists.entity.Gist
+import com.lexgorbunov.gisthub.gists.gistlist.entity.GistModel
 import javax.inject.Inject
 
 interface GistListView {
 
     fun init(view: View, onItemClickListener: OnGistClicked, onLoadMore: OnGistLoadMore)
     fun showError(throwable: Throwable)
-    fun setList(list: List<Gist>)
-    fun addToList(list: List<Gist>)
+    fun setList(list: List<GistModel>)
+    fun addToList(list: List<GistModel>)
     fun showProgress()
     fun hideProgress()
     fun showEmptyView()
@@ -67,11 +67,11 @@ class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter)
         progressDialog.dismiss()
     }
 
-    override fun setList(list: List<Gist>) {
+    override fun setList(list: List<GistModel>) {
         adapter.setList(list)
     }
 
-    override fun addToList(list: List<Gist>) {
+    override fun addToList(list: List<GistModel>) {
         adapter.addToList(list)
     }
 

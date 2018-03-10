@@ -1,6 +1,5 @@
 package com.lexgorbunov.gisthub.gists.entity
 
-import android.support.v4.util.ObjectsCompat
 import com.google.gson.annotations.SerializedName
 
 class Gist {
@@ -43,14 +42,4 @@ class Gist {
     // For details
     @SerializedName("history")
     val history: List<GistHistoryEntry>? = null
-
-    override fun hashCode(): Int {
-        return ObjectsCompat.hash(id, updatedAt)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        (other as? Gist).let {
-            return it != null && id == it.id && updatedAt == it.updatedAt
-        }
-    }
 }

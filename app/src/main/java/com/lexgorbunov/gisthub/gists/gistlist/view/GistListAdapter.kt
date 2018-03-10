@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lexgorbunov.gisthub.R
-import com.lexgorbunov.gisthub.gists.entity.Gist
+import com.lexgorbunov.gisthub.gists.gistlist.entity.GistModel
 import javax.inject.Inject
 
 class GistListAdapter @Inject constructor() : RecyclerView.Adapter<GistListViewHolder>(), OnGistItemClicked {
 
-    private val list: MutableList<Gist> = mutableListOf()
+    private val list: MutableList<GistModel> = mutableListOf()
     var onClickedListener: OnGistClicked? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GistListViewHolder {
@@ -28,16 +28,16 @@ class GistListAdapter @Inject constructor() : RecyclerView.Adapter<GistListViewH
         return list.size
     }
 
-    fun setList(list: List<Gist>) {
+    fun setList(list: List<GistModel>) {
         val diffResult = DiffUtil.calculateDiff(GistListDiffCallback(this.list, list))
         this.list.clear()
         this.list.addAll(list)
         diffResult.dispatchUpdatesTo(this)
     }
 
-    fun addToList(list: List<Gist>) {
+    fun addToList(list: List<GistModel>) {
         // Exclude duplicates
-        val newList: List<Gist> = this.list.union(list).toList()
+        val newList: List<GistModel> = this.list.union(list).toList()
         val diffResult = DiffUtil.calculateDiff(GistListDiffCallback(this.list, newList))
         this.list.clear()
         this.list.addAll(newList)
