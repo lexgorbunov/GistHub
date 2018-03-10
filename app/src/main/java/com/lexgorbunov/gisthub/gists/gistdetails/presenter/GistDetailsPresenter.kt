@@ -14,8 +14,10 @@ interface GistDetailsPresenter {
     fun destroy()
 }
 
-class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRepository,
-                                                   private val gistHistoryMapper: GistHistoryEntryMapper) : GistDetailsPresenter {
+class GistDetailsPresenterImpl @Inject constructor(
+    private val gistRepo: GistRepository,
+    private val gistHistoryMapper: GistHistoryEntryMapper
+) : GistDetailsPresenter {
 
     private var view: GistDetailsView? = null
     private val subscriptions: CompositeDisposable = CompositeDisposable()
@@ -36,22 +38,22 @@ class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRep
         view?.let { view ->
             view.showProgress()
             gistRepo.getGist(gistId).observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(onSuccess = { gist ->
-                        view.displayDetails(
-                                descr = gist.description ?: "",
-                                filesList = gist.files?.values?.toList() ?: listOf(),
-                                historyList = gistHistoryMapper.map(gist.history ?: listOf())
-                        )
-                        gist.owner?.let { owner ->
-                            if (owner.avatarUrl.isNullOrBlank()) view.hideAvatar() else view.showAvatar(owner.avatarUrl!!)
-                            if (owner.login.isNullOrBlank()) view.hideName() else view.showName(owner.login!!)
-                        }
-                        view.hideProgress()
-                    }, onError = {
-                        it.printStackTrace()
-                        view.hideProgress()
-                        view.showError(it)
-                    }).let { subscriptions.add(it) }
+                .subscribeBy(onSuccess = { gist ->
+                    view.displayDetails(
+                        descr = gist.description ?: "",
+                        filesList = gist.files?.values?.toList() ?: listOf(),
+                        historyList = gistHistoryMapper.map(gist.history ?: listOf())
+                    )
+                    gist.owner?.let { owner ->
+                        if (owner.avatarUrl.isNullOrBlank()) view.hideAvatar() else view.showAvatar(owner.avatarUrl!!)
+                        if (owner.login.isNullOrBlank()) view.hideName() else view.showName(owner.login!!)
+                    }
+                    view.hideProgress()
+                }, onError = {
+                    it.printStackTrace()
+                    view.hideProgress()
+                    view.showError(it)
+                }).let { subscriptions.add(it) }
         }
     }
 }

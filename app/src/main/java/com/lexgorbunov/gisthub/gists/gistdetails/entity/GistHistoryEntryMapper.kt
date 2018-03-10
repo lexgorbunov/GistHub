@@ -9,7 +9,7 @@ interface GistHistoryEntryMapper {
     fun map(entry: GistHistoryEntry): GistHistoryEntryModel
 }
 
-class GistHistoryEntryMapperImpl @Inject constructor(): GistHistoryEntryMapper {
+class GistHistoryEntryMapperImpl @Inject constructor() : GistHistoryEntryMapper {
 
     override fun map(entry: GistHistoryEntry): GistHistoryEntryModel {
         return GistHistoryEntryModel(
@@ -20,5 +20,4 @@ class GistHistoryEntryMapperImpl @Inject constructor(): GistHistoryEntryMapper {
     }
 
     override fun map(list: List<GistHistoryEntry>): List<GistHistoryEntryModel> = list.map { map(it) }
-
 }
