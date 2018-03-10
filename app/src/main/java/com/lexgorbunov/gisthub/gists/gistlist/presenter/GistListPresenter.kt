@@ -74,8 +74,9 @@ class GistListPresenterImpl @Inject constructor(
                     view.hideProgress()
                 }, onError = {
                     view.hideProgress()
-                    it.printStackTrace()
+                    view.allowTryRetryLoadMore()
                     view.showError(it)
+                    it.printStackTrace()
                 }).let { subscriptions.add(it) }
         }
     }

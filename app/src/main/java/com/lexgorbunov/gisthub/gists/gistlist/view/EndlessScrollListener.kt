@@ -15,6 +15,7 @@ class EndlessScrollListener : RecyclerView.OnScrollListener {
     private var previousTotalItemCount = 0
     // True if we are still waiting for the last set of data to load.
     private var loading = true
+    private var retry = false
     // Sets the starting page index
     private var startingPageIndex = 0
 
@@ -84,9 +85,14 @@ class EndlessScrollListener : RecyclerView.OnScrollListener {
         // If it’s still loading, we check to see if the dataset count has
         // changed, if so we conclude it has finished loading and update the current page
         // number and total item count.
-        if (loading && totalItemCount > previousTotalItemCount) {
+        if (!retry) {
+            if (loading && totalItemCount > previousTotalItemCount) {
+                loading = false
+                previousTotalItemCount = totalItemCount
+            }
+        } else {
             loading = false
-            previousTotalItemCount = totalItemCount
+            retry = false
         }
 
         // If it isn’t currently loading, we check to see if we have breached
@@ -105,6 +111,10 @@ class EndlessScrollListener : RecyclerView.OnScrollListener {
         this.currentPage = this.startingPageIndex
         this.previousTotalItemCount = 0
         this.loading = true
+    }
+
+    fun allowTryRetry() {
+        retry = true
     }
 }
 

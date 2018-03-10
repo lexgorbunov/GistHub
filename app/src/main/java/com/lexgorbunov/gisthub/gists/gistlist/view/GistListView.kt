@@ -23,6 +23,7 @@ interface GistListView {
     fun showEmptyView()
     fun hideEmptyView()
     fun getGistsCount(): Int
+    fun allowTryRetryLoadMore()
 }
 
 class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter) : GistListView {
@@ -79,6 +80,10 @@ class GistListViewImpl @Inject constructor(private val adapter: GistListAdapter)
         tryParseError(view.context, throwable)?.let {
             view.context.toast(it.localizedMessage)
         }
+    }
+
+    override fun allowTryRetryLoadMore() {
+        endlessScrollListener.allowTryRetry()
     }
 
     companion object {
