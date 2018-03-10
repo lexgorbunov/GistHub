@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.lexgorbunov.gisthub.R
 import com.lexgorbunov.gisthub.gists.entity.GistFile
-import com.lexgorbunov.gisthub.gists.entity.GistHistoryEntry
+import com.lexgorbunov.gisthub.gists.gistdetails.entity.GistHistoryEntryModel
 import com.lexgorbunov.gisthub.gists.gistdetails.view.files.GistFilesAdapter
 import com.lexgorbunov.gisthub.gists.gistdetails.view.history.GistHistoryAdapter
 import kotlinx.android.synthetic.main.page_commits.view.*
@@ -64,7 +64,7 @@ class DetailsPagerAdapter constructor(private val context: Context) : PagerAdapt
         filesAdapter.setList(list)
     }
 
-    fun setHistoryList(list: List<GistHistoryEntry>) {
+    fun setHistoryList(list: List<GistHistoryEntryModel>) {
         historyAdapter.setList(list)
     }
 

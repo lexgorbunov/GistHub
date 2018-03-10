@@ -4,12 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.lexgorbunov.gisthub.R
-import com.lexgorbunov.gisthub.gists.entity.GistHistoryEntry
+import com.lexgorbunov.gisthub.gists.gistdetails.entity.GistHistoryEntryModel
 import javax.inject.Inject
 
 class GistHistoryAdapter @Inject constructor() : RecyclerView.Adapter<GistHistoryViewHolder>() {
 
-    private val list: MutableList<GistHistoryEntry> = mutableListOf()
+    private val list: MutableList<GistHistoryEntryModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GistHistoryViewHolder {
         return GistHistoryViewHolder(LayoutInflater.from(parent.context)
@@ -24,7 +24,7 @@ class GistHistoryAdapter @Inject constructor() : RecyclerView.Adapter<GistHistor
         return list.size
     }
 
-    fun setList(list: List<GistHistoryEntry>) {
+    fun setList(list: List<GistHistoryEntryModel>) {
         val removedSize = this.list.size
         this.list.clear()
         this.list.addAll(list)

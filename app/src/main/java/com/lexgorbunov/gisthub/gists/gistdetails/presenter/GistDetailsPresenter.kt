@@ -1,5 +1,6 @@
 package com.lexgorbunov.gisthub.gists.gistdetails.presenter
 
+import com.lexgorbunov.gisthub.gists.gistdetails.entity.GistHistoryEntryMapper
 import com.lexgorbunov.gisthub.gists.gistdetails.view.GistDetailsView
 import com.lexgorbunov.gisthub.gists.repository.GistRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,7 +14,8 @@ interface GistDetailsPresenter {
     fun destroy()
 }
 
-class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRepository) : GistDetailsPresenter {
+class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRepository,
+                                                   private val gistHistoryMapper: GistHistoryEntryMapper) : GistDetailsPresenter {
 
     private var view: GistDetailsView? = null
     private val subscriptions: CompositeDisposable = CompositeDisposable()
@@ -38,7 +40,7 @@ class GistDetailsPresenterImpl @Inject constructor(private val gistRepo: GistRep
                         view.displayDetails(
                                 descr = gist.description ?: "",
                                 filesList = gist.files?.values?.toList() ?: listOf(),
-                                historyList = gist.history ?: listOf()
+                                historyList = gistHistoryMapper.map(gist.history ?: listOf())
                         )
                         gist.owner?.let { owner ->
                             if (owner.avatarUrl.isNullOrBlank()) view.hideAvatar() else view.showAvatar(owner.avatarUrl!!)

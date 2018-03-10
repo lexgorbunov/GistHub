@@ -11,7 +11,7 @@ import com.lexgorbunov.gisthub.app.utils.buildProgressDialog
 import com.lexgorbunov.gisthub.app.utils.toast
 import com.lexgorbunov.gisthub.app.utils.tryParseError
 import com.lexgorbunov.gisthub.gists.entity.GistFile
-import com.lexgorbunov.gisthub.gists.entity.GistHistoryEntry
+import com.lexgorbunov.gisthub.gists.gistdetails.entity.GistHistoryEntryModel
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ interface GistDetailsView {
 
     fun init(view: View)
     fun showError(throwable: Throwable)
-    fun displayDetails(descr: String, filesList: List<GistFile>, historyList: List<GistHistoryEntry>)
+    fun displayDetails(descr: String, filesList: List<GistFile>, historyList: List<GistHistoryEntryModel>)
     fun showAvatar(url: String)
     fun hideAvatar()
     fun showName(name: String)
@@ -61,7 +61,7 @@ class GistDetailsViewImpl @Inject constructor() : GistDetailsView {
         progressDialog.dismiss()
     }
 
-    override fun displayDetails(descr: String, filesList: List<GistFile>, historyList: List<GistHistoryEntry>) {
+    override fun displayDetails(descr: String, filesList: List<GistFile>, historyList: List<GistHistoryEntryModel>) {
         descriptionTextView.text = descr
         pagerAdapter.setFilesList(filesList)
         pagerAdapter.setHistoryList(historyList)
